@@ -49,6 +49,7 @@ document.querySelector("#nightMode").addEventListener("click",changeDayMode);
 document.querySelector("#loadApp").addEventListener("click",startApp);
 function startApp() {
   document.querySelector("#startApp").classList.toggle("active");
+  document.querySelector("#musics").classList.toggle("active");
 }
 
 document.querySelector("#settings").addEventListener("click",musicController);
