@@ -1,0 +1,290 @@
+@font-face {
+  font-family: russo;
+  src: url(fonts/RussoOne-Regular.ttf);
+}
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'russo','Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+:root{
+  --color1: #00ffc0;
+  --color2: #00a9ff;
+  --black: #000;
+  --white: #fff;
+  --rainbow: linear-gradient(235deg,#B200FF,#0048FF,#00FFD8,#48FF00,#F2FF00,#f18509,#FF0008);
+}
+body,html{
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body{
+  background-color: var(--white);
+}
+
+/* Start App style section starts */
+#startApp{
+  position: absolute;
+  top: 0;left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 1.5s;
+}
+#startApp.active{
+  top: -100%;
+}
+#startApp > div{
+  position: relative;
+}
+#startApp img,#startApp > div div{
+  position: absolute;
+  top: 50%;left: 50%;
+  transform: translate(-50%,-50%);
+}
+#startApp img.active{
+  filter: invert(1);
+}
+#startApp > div div{
+  background: linear-gradient(var(--color1),var(--color2));
+  z-index: -1;
+  border-radius: 50%;
+  animation: 15s ease-in-out rotate infinite;
+  filter: blur(5px);
+}
+#startApp > div div:nth-child(2) {
+  filter: blur(30px);
+}
+body.rainbow #startApp > div  div{
+  background: var(--rainbow);
+}
+body.rainbow .rgb_hidden input,body.rainbow #imgRainbow{
+  display: none;
+}
+#rgb{
+  position: absolute;
+  top: 0;right: 0;
+  z-index: 2;
+}
+.double{
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(235deg,var(--color2),var(--color1));
+  border-radius: 50%;
+  border: 0.5px solid black;
+  display: none;
+}
+.double.active{
+  display: inline-block;
+}
+#rgb h2{
+  background-color: var(--black);
+  color: var(--white);
+  padding: 15px 20px;
+  border-radius: 0 0 0 10px;
+}
+#rgb h2.active{
+  display: none;
+}
+body.active #rgbClose{
+  filter: invert(1);
+}
+.rgb_hidden{
+  position: absolute;
+  top: -100%;right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 15px 20px;
+  transition: 1s;
+}
+.rgb_hidden.active{
+  top: 0;
+}
+.rgb_hidden img,.settings img{
+  width: 40px; 
+}
+.settings{
+  position: fixed;    
+  left: 0;top: 60px;
+  margin: 0.8rem;
+  z-index: 100;
+}
+body.active .settings img{
+  filter: invert(1);
+  z-index: 101 ;
+}                                 
+#nightMode{
+  display: none;
+}
+body.active #nightMode{
+  display: block;
+}
+body.active #dayMode{
+  display: none;
+}
+body.active{
+  --black: #fff;
+  --white: #000;
+}
+#dayMode,#nightMode{
+  position: fixed;
+  top: 0;left: 0;
+  width: 50px;
+  z-index: 10;
+  margin: 10px;
+}
+@keyframes rotate{
+  0%{
+    transform: translate(-50%,-50%) rotate(0deg);
+  }
+  100%{
+    transform: translate(-50%,-50%) rotate(360deg);
+  }
+}
+@media (orientation: portrait) {
+  #startApp > div{
+    width: 100%;
+    max-width: 500px;
+    aspect-ratio: 1/1;
+  }
+  #startApp img,#startApp > div div{
+    width: 90%;
+    aspect-ratio: 1/1;
+    max-width: 450px;
+  }
+}
+@media (orientation: landscape) {
+  #startApp > div{
+    height: 100%;
+    max-height: 500px;
+    aspect-ratio: 1/1;
+  }
+  #startApp img,#startApp > div div{
+    height: 90%;
+    aspect-ratio: 1/1;
+    max-height: 450px;
+  }
+}
+/* Start App style section ends */
+
+/* Music controller section starts */
+#musicController{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  top: -100%;left: 0;
+  background-color: var(--white);
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  flex-direction: column;
+  transition: 1.5s;
+   z-index: 102;
+}
+#musicController.active{
+  top: 0;
+}
+#musicController h2{
+  font-size: 3rem;
+  background: linear-gradient(235deg,var(--color1),var(--color2));
+  padding: 0.8rem;
+  border-radius: 2rem;
+  color: var(--white);
+}
+body.rainbow #musicController h2{
+  background: var(--rainbow);
+}
+#musicController .controllerOptions{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem; 
+  margin: .5rem;
+}
+#musicController .controllerOptions div{
+  position: relative;
+  color: var(--black);
+}
+#musicController .controllerOptions div::before{
+  content: "";
+  bottom: 0;left: 0;
+  position: absolute;
+  width: 100%;height: 0.2rem;
+  background: linear-gradient(235deg,var(--color1),var(--color2));
+}
+body.rainbow #musicController .controllerOptions div::before{
+  background: var(--rainbow);
+}
+
+#closeMusicControler{
+  position: absolute;
+  top: 0;right: 0;
+  width: 3rem;
+  height: 3rem;
+  background-color: var(--black);
+  color: var(--white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  margin: 0.5rem;
+  border-radius: 50%;
+  line-height: 3rem;                
+}                                  
+#musicController #form{
+  position: relative;
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 1rem 2rem; 
+  border-radius: 2rem;
+  background-color: var(--white);
+  margin-top: 2rem;
+}
+#musicController #form::before{          
+  content: "";                       
+  position: absolute;
+  top: 0;left: 0;
+  transform: translate(-2%,-2%);        
+  width: 104%;
+  height: 104%;
+  background: linear-gradient(235deg,var(--color1),var(--color2));
+  z-index: -1;
+  border-radius: 2rem;
+  filter: blur(5px);
+}    
+body.rainbow #musicController #form::before{
+  background: var(--rainbow);          
+}
+#form label{
+  font-size: 2rem;
+  margin-bottom: .5rem;
+  color: var(--black);
+} 
+#form input{
+  width: 80%;
+  padding: .2rem;
+}
+#form button{
+  font-size: 2rem;
+  color: var(--white);
+  background-color: var(--black);
+  border: none;
+  margin-top: .5rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 1rem;
+}
+
+/* Music controller section ends */

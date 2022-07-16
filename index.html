@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Music App</title>
+    <link rel="stylesheet" href="style.css" type="text/css" media="all" />
+  </head>
+  <body>
+    <!-- Visual Settings App starts -->
+    <div class="mode">
+      <img src="images/sun.png" id="dayMode"/>
+      <img src="images/moon.png" id="nightMode" />
+    </div>
+    
+    <div class="settings">  
+      <img src="images/settings.png" id="settings"> 
+    </div>
+
+    <div id="rgb">
+      <h2 id="rgbOpen">RGB</h2>
+      <div class="rgb_hidden">
+        <input type="color" name="color1" id="color1" value="#00ffc0" onchange="changeColor(1)"/>
+        <input type="color" name="color2" id="color2" value="#00a9ff" onchange="changeColor(2)"/>
+        <img src="images/rainbow.png" id="imgRainbow"/>
+        <div class="double"></div>
+        <img id="rgbClose" src="images/close.png" alt="" />
+      </div>
+    </div>
+    <!-- Visual Settings App ends -->
+
+    <!-- Music app landing page starts -->
+    <div id="startApp">
+      <div>
+        <img src="images/start.png" id="loadApp"/>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+    <!-- Music app landing page ends -->
+
+    <!-- Musics Controller starts -->
+    <div id="musicController">
+      <div id="closeMusicControler">x</div>
+      <div class="controller">
+        <h2>Music Controller</h2>
+        <div class="controllerOptions">
+          <div>Add</div>
+          <div>Remove</div>
+          <div>Add favorite</div>
+          <div>Remove favorite</div>
+        </div>
+      </div>
+      <div id="form">
+        <label for="nameMusic">Music Name : </label>
+        <input type="text" name="name" id="nameMusic">
+        <button id="complete">ok </button>
+      </div>
+    </div>
+    <!-- Musics Controller ends -->
+
+    <!-- Music section starts -->
+
+    <!-- Music section ends -->
+
+
+
+
+    
+    
+    
+    
+    <script src="startApp.js" type="text/javascript" charset="utf-8"></script>
+     <script src="controllerMusic.js"></script>
+  </body>
+</html>
