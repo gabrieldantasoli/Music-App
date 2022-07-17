@@ -40,16 +40,14 @@
     </div>
     <!-- Music app landing page ends -->
 
-    <!-- Musics Controller starts -->
+    <!-- Musics Controller starts -->  
     <div id="musicController">
       <div id="closeMusicControler">x</div>
       <div class="controller">
         <h2>Music Controller</h2>
         <div class="controllerOptions">
-          <div>Add</div>
-          <div>Remove</div>
-          <div>Add favorite</div>
-          <div>Remove favorite</div>                          
+          <div id="add">Add</div>
+          <div id="remove">Remove</div>                                  
         </div>
       </div>
       <div id="form">
@@ -63,17 +61,28 @@
     <!-- Music section starts -->
     <div id="musics">
       <div id="musicBox">music name</div>       
-      <div id="musicTime"></div>                  
-      <div id="controls"> 
-        <div class="controls1">                                                           
-          <img src="images/left.png" alt="">
-          <img src="images/play.png" alt="">
-          <img src="images/right.png" alt="">                                  
+      <div class="duraction">
+        <input type="range" id="progress" value="0" min="0" max="100" onchange="changeTime(this.value)"/>
+        <div class="time">
+          <p class="beggin">0:00</p>
+          <p class="end">0:00</p> 
         </div>
-        <div class="controls2">                 
-          <img src="images/left.png" alt="">
-          <img src="images/right.png" alt="">
+      </div>      
+      <div class="player">
+        <img src="images/previous.svg" id="previous">
+        <img src="images/pause.svg" id="pause"/>
+        <img src="images/play.svg" id="play"/>
+        <img src="images/next.svg" id="next"/>
+      </div>
+      <div class="repeat">
+        <div class="repeat1" id="one">  
+          <img id="refresh" src="images/refresh.svg" />
         </div>
+        <div class="repeat1" id="two">
+          <img id="forward" src="images/forward.svg" />
+        </div> 
+      </div>
+      <audio src=""></audio>                     
         
         
       </div>
