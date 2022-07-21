@@ -5,23 +5,25 @@ currentOperation = "";
 function addPop() {
     if (currentOperation == "add") {
         addMusic();
+        next();
     }else{
         removeMusic();
+        previous();
     }
 }
 
 function getMusicas() {
-    try  {
-       return localStorage.getItem("musicas");  
-    } catch (e) {
-        localStorage.setItem("musicas",[]);
+    if (localStorage.getItem("listaMusicas") != null) {
+      return localStorage.getItem("listaMusicas");
+    } else {
+        localStorage.setItem("listaMusicas",[]);
         localStorage.setItem("currentlyIndex",0);
-        return localStorage.getItem("mu").split();  
+        return localStorage.getItem("listaMusicas");  
     }
 }
  
 function setMusicas(musicas) {
-    localStorage.setItem("musicas",musicas);
+    localStorage.setItem("listaMusicas",musicas);
 }
 
 function addMusic() {
@@ -70,24 +72,31 @@ const previous = () => {
   let MusicIndex = localStorage.getItem("currentlyIndex");
   MusicIndex --;
   localStorage.setItem("currentlyIndex",MusicIndex);
-  if (MusicIndex<1){
-    MusicIndex = localStorage.getItem("musicas").split(",").length-1;
+  MusicIndex = localStorage.getItem("currentlyIndex");
+  let musicas = getMusicas().split(",");
+  if (musicas.length > 1) {
+    if (MusicIndex<1){
+      MusicIndex = getMusicas().split(",").length-1;
+      localStorage.setItem("currentlyIndex",MusicIndex);
+    }
+    PLAY(MusicIndex);
+    UPDATE();
   }
-  PLAY(MusicIndex);
-  UPDATE();
 };
 
 const next = () => {
-    let MusicIndex = localStorage.getItem("currentlyIndex");
-    MusicIndex ++;
-    localStorage.setItem("currentlyIndex",MusicIndex);
-    let musicas = getMusicas().split(",");    
+  let MusicIndex = localStorage.getItem("currentlyIndex");
+  MusicIndex ++;
+  localStorage.setItem("currentlyIndex",MusicIndex);
+  let musicas = getMusicas().split(",");
+  if (musicas.length > 1) {
     if (MusicIndex > (musicas.length-1)){
         MusicIndex = 1;
         localStorage.setItem("currentlyIndex",MusicIndex);
     }
     PLAY(localStorage.getItem("currentlyIndex"));
     UPDATE();
+  }
 };   
 
 document.querySelector('#previous').addEventListener('click',previous);
@@ -110,7 +119,7 @@ function PLAY(MusicIndex) {
   let musicas = getMusicas().split(",");
   let source = "audios/"+musicas[MusicIndex];  
   let musicName = musicas[MusicIndex].split("_").join(" ").replace(".mp3"," ");
-  document . querySelector("#musicBox").textContent = musicName;
+  document.querySelector("#musicBox").textContent = musicName;
   Music.setAttribute('src',source);
   Music.addEventListener('loadeddata',() => {
     update_progress();
@@ -131,10 +140,10 @@ function SecondsToMinutes(seconds) {
 }
 
 function update_progress() {
-  progress.value = 0+(Music.currentTime/(Music.duration/100));
+  progress.value = (Music.currentTime/(Music.duration/100));
   if (progress.value>=100 && document.getElementById('one').classList == "repeat1 active"){
     next(); 
-    previous();                                                                     
+    previous();                         
     play_music(); 
   }else if (progress.value>=100 && document.getElementById('two').classList == "repeat1 active"){
     next(); 
@@ -150,11 +159,10 @@ function changeTime(value){
 document.querySelector("#refresh") .addEventListener("click",() => {
   let one = document.querySelector("#one");
   one.classList.toggle("active");   
-  let two = document.querySelector("#two");                                                            
+  let two = document.querySelector("#two");       
   if (one.classList == "repeat1 active" && two.classList ==  "repeat1 active") {
     two.classList.remove("active");
   }
-  
 })         
 document.querySelector("#forward") .addEventListener("click",() => {
   let one = document.querySelector("#one");                                
@@ -166,6 +174,3 @@ document.querySelector("#forward") .addEventListener("click",() => {
 })              
 
 next();
-
-document.getElementById('forward').addEventListener('click',repeat);
-document.getElementById('refresh').addEventListener('click',repeat);

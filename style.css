@@ -317,6 +317,7 @@ body.rainbow #musicController #form::before{
   justify-content: center;
   align-items: center;
   color: var(--black); 
+  word-break: break-word;
 }     
 #musicTime{
   width: 80%;
@@ -346,8 +347,9 @@ body.rainbow #musics #musicBox{
 #musics img{              
   width: 50px;
 }
-
-
+.beggin,.end{
+  color: var(--black);
+}
 .duraction{
   width: 80%;
   max-width: 250px;
@@ -433,10 +435,19 @@ progress{
   z-index: 2;
   box-shadow: -407px 0 0 400px var(--color2);
 }
+#one,#two{
+  background-color: var(--white);
+} 
 #one.active,#two.active{
   background-color: var(--black);
-} 
-#one.active  img,#two.active img{
+}
+#one.active img,#two.active img{
   filter: invert(1);
+}
+body.active #one.active,body.active #two.active{
+  background-color: var(--black);
+}
+body.active #one.active img,body.active #two.active img{
+  filter: invert(0);
 }
 /* M usics style ends */
